@@ -16,11 +16,11 @@ const ExpenseForm = ({ onAddExpense, onCancel }: ExpenseFormProps) => {
   const { register, handleSubmit } = useForm<Omit<Expense, "id">>();
   const [startDate, setDate] = useState(new Date());
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: Omit<Expense, "id">) => {
     const expense: Expense = {
       id: Math.random().toString(),
       title: data.title,
-      amount: parseFloat(data.amount),
+      amount: data.amount,
       date: startDate,
     };
     await addDoc(collection(db, "expenses"), {
