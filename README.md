@@ -1,14 +1,8 @@
-# Контрольні запитання
-1. Поясніть призначення бібліотеки react-doom
-  
-    React-dom призначається для взаємодії React з DOM (DOM - Document Object Model) у браузері. Вона містить методи для рендеру react-компонентів і керування цим   процесом. 
+# React + Vite
 
-2.  Поясніть призначення бібліотеки babel
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-    Babel використовується для конвертації нових версій ECMAScript у зрозумілу для браузеру версії JavaScript.
+Currently, two official plugins are available:
 
-3. Наведіть приклади інструментів які є альтернативою Create React App
-
-- Для створення React застосунку можно також використати Vite.
-- Якщо ви створюєте серверний сайт з допомогою Node.js, спробуйте Next.js.
-- Якщо ви створюєте статичний контент-орієнтований вебсайт, спробуйте Gatsby.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
