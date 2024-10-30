@@ -1,0 +1,27 @@
+.card {
+  border-radius: 12px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+
+  padding: 1rem;
+  background-color: rgba(117, 118, 118, 0.46);
+  margin: 2rem auto;
+  width: 50rem;
+  max-width: 95%;
+}
+
+.button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem; /* Optional: Add space below the button */
+}
+
+.toggle_button {
+  background-color: #5c007a;
+  color: white;
+  border: none;
+  padding: 1rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+}
