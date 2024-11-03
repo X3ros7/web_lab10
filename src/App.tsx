@@ -1,12 +1,12 @@
 import Card from "./components/Card";
 
 function App() {
-  return (
-    <>
-      <h2>My expenses template</h2>
-      <Card />
-    </>
-  );
+    return (
+        <>
+            <h1 className="font-bold">My expenses template</h1>
+            <Card/>
+        </>
+    );
 }
 
 export default App;

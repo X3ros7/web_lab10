@@ -1,13 +1,15 @@
 import styles from "./ExpenseItem.module.css";
 import ExpenseDate from "../ExpenseDate";
 import {IExpense} from "../Expenses";
-import {db} from "../../firebase";
+import {db} from "@/firebase";
 import {deleteDoc, doc} from "firebase/firestore";
 import {SetStateAction} from "react";
+import UpdateDialog from "@/components/UpdateDialog";
+
 
 interface ExpenseItemProps {
     expense: IExpense;
-    setExpenses: (value: SetStateAction<IExpense[]>) => void
+    setExpenses: (value: SetStateAction<IExpense[]>) => void;
 }
 
 const ExpenseItem = ({expense, setExpenses}: ExpenseItemProps) => {
@@ -31,6 +33,8 @@ const ExpenseItem = ({expense, setExpenses}: ExpenseItemProps) => {
                 marginLeft: "10px",
                 marginRight: "10px",
             }} onClick={() => onDeleteHandler(expense.id)}/>
+            <UpdateDialog expense={expense} setExpenses={setExpenses}/>
+
         </div>
     );
 };

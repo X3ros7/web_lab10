@@ -10,7 +10,7 @@ import {db} from "../../firebase";
 interface ExpenseFormProps {
     onAddExpense: (expense: IExpense) => void;
     onCancel: () => void;
-    setIsLoading: (value: SetStateAction<boolean>) => void
+    setIsLoading?: (value: SetStateAction<boolean>) => void
 }
 
 const ExpenseForm = ({onAddExpense, onCancel, setIsLoading}: ExpenseFormProps) => {
@@ -18,24 +18,22 @@ const ExpenseForm = ({onAddExpense, onCancel, setIsLoading}: ExpenseFormProps) =
     const [startDate, setDate] = useState(new Date());
 
     const onSubmit = async (data: Omit<IExpense, "id">) => {
-        const expense: IExpense = {
-            id: Math.random().toString(),
-            title: data.title,
-            amount: data.amount,
-            date: startDate,
-        };
         try {
-            setIsLoading(true);
-            await addDoc(collection(db, "expenses"), {
-                title: expense.title,
-                amount: expense.amount,
-                date: expense.date,
+            if (setIsLoading) {
+                setIsLoading(true);
+            }
+            const docRef = await addDoc(collection(db, "expenses"), {
+                title: data.title,
+                amount: data.amount,
+                date: startDate,
             });
-            onAddExpense(expense);
+            onAddExpense({...data, date: startDate, id: docRef.id});
         } catch (error) {
             console.log(error);
         } finally {
-            setIsLoading(false);
+            if (setIsLoading) {
+                setIsLoading(false);
+            }
         }
     };
 

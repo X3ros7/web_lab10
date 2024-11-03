@@ -28,7 +28,7 @@ const Card = () => {
                 }))
                 setExpenses(itemDocs);
             } catch (e) {
-                console.error(e);
+                console.error(`Error while fetching items: ${e}`);
             } finally {
                 setIsLoading(false);
             }
