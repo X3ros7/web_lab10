@@ -1,5 +1,4 @@
-import { app } from "./firebase";
-import { db } from "./db";
+import {app} from "./firebase";
+import {db} from "./db";
 
-export { app };
-export { db };
+export {app, db}
