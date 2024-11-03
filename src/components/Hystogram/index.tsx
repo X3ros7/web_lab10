@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./Hystogram.module.css";
-import { Expense } from "../Expenses";
+import { IExpense } from "../Expenses";
 
 interface BarChartProps {
-  expenses: Expense[];
+  expenses: IExpense[];
 }
 
 const BarChart: React.FC<BarChartProps> = ({ expenses }) => {
