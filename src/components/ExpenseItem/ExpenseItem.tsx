@@ -29,7 +29,7 @@ const ExpenseItem: FC<ExpenseItemProps> = ({expense, setExpenses}) => {
             <h2>{expense.title}</h2>
             <div className={styles.expense_item__price}>${expense.amount}</div>
             <UpdateDialog expense={expense} setExpenses={setExpenses}/>
-            <img src="delete.svg" alt="delete" className="m-3 bg-purple-950 p-1.5 rounded"
+            <img src="delete.svg" alt="delete" className="m-3 bg-purple-950 p-1.5 border rounded"
                  onClick={() => onDeleteHandler(expense.id)}/>
         </div>
     );

@@ -37,7 +37,7 @@ const UpdateDialog: FC<UpdateDialogProps> = ({setExpenses, expense}) => {
     return (
         <Dialog>
             <DialogTrigger
-                className="inline-flex ml-2.5 items-center gap-1 px-3 py-1.5 text-white font-bold bg-purple-950 hover:text-purple-700 hover:bg-purple-50 rounded-md transition-colors duration-200">
+                className="inline-flex ml-2.5 items-center gap-1 px-3 py-1.5 text-white font-bold bg-purple-950 border hover:text-purple-700 hover:bg-purple-50 rounded-md transition-colors duration-200">
                 <Pencil className="w-4 h-4"/>
                 <span>Edit</span>
             </DialogTrigger>
@@ -105,7 +105,7 @@ const UpdateDialog: FC<UpdateDialogProps> = ({setExpenses, expense}) => {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full inline-flex items-center justify-center gap-2 bg-gray-800 text-white py-2.5 px-4 rounded-lg hover:bg-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                            className="w-full inline-flex items-center justify-center gap-2 bg-purple-950 text-white py-2.5 px-4 rounded-lg hover:bg-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
                         >
                             {isLoading ? (
                                 <>
