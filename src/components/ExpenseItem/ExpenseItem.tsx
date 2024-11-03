@@ -1,21 +1,20 @@
+import {FC, SetStateAction} from "react";
+import {deleteDoc, doc} from "firebase/firestore";
+import {firestore_db} from "@/firebase";
 import styles from "./ExpenseItem.module.css";
 import ExpenseDate from "../ExpenseDate";
 import {IExpense} from "../Expenses";
-import {db} from "@/firebase";
-import {deleteDoc, doc} from "firebase/firestore";
-import {SetStateAction} from "react";
-import UpdateDialog from "@/components/UpdateDialog";
-
+import UpdateDialog from "../UpdateDialog";
 
 interface ExpenseItemProps {
     expense: IExpense;
     setExpenses: (value: SetStateAction<IExpense[]>) => void;
 }
 
-const ExpenseItem = ({expense, setExpenses}: ExpenseItemProps) => {
+const ExpenseItem: FC<ExpenseItemProps> = ({expense, setExpenses}) => {
     const onDeleteHandler = async (expenseId: string) => {
         try {
-            const expensesRef = doc(db, "expenses", expenseId);
+            const expensesRef = doc(firestore_db, "expenses", expenseId);
             await deleteDoc(expensesRef);
             setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== expenseId));
         } catch (e) {
@@ -29,12 +28,9 @@ const ExpenseItem = ({expense, setExpenses}: ExpenseItemProps) => {
 
             <h2>{expense.title}</h2>
             <div className={styles.expense_item__price}>${expense.amount}</div>
-            <img src="delete.svg" alt="delete" style={{
-                marginLeft: "10px",
-                marginRight: "10px",
-            }} onClick={() => onDeleteHandler(expense.id)}/>
             <UpdateDialog expense={expense} setExpenses={setExpenses}/>
-
+            <img src="delete.svg" alt="delete" className="m-3 bg-purple-950 p-1.5 rounded"
+                 onClick={() => onDeleteHandler(expense.id)}/>
         </div>
     );
 };

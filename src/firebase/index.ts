@@ -1,4 +1,4 @@
 import {app} from "./firebase";
-import {db} from "./db";
+import {firestore_db} from "./firestore_db.ts";
 
-export {app, db}
+export {app, firestore_db}

@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction} from "react";
+import {Dispatch, FC, SetStateAction} from "react";
 import styles from "./Filter.module.css";
 
 interface FilterProps {
@@ -6,7 +6,7 @@ interface FilterProps {
     onYearChange: Dispatch<SetStateAction<string>>;
 }
 
-const Filter = ({selectedYear, onYearChange}: FilterProps) => {
+const Filter: FC<FilterProps> = ({selectedYear, onYearChange}) => {
     return (
         <div className={styles.filter}>
             <label>Filter by year</label>

@@ -1,14 +1,14 @@
-import {useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import Expenses, {IExpense} from "../Expenses";
 import styles from "./Card.module.css";
 import ExpenseForm from "../ExpenseForm";
-import Hystogram from "../Hystogram";
+import Hystogram from "../Histogram";
 import Filter from "../Filter";
 import {collection, getDocs} from "firebase/firestore";
-import {db} from "../../firebase";
+import {firestore_db} from "@/firebase";
 import Loader from "../Loader";
 
-const Card = () => {
+const Card: FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [expenses, setExpenses] = useState<IExpense[]>([]);
     const [selectedYear, setSelectedYear] = useState("2021");
@@ -18,7 +18,7 @@ const Card = () => {
         const fetchItems = async () => {
             try {
                 setIsLoading(true);
-                const itemsCollection = collection(db, "expenses");
+                const itemsCollection = collection(firestore_db, "expenses");
                 const itemsSnapshot = await getDocs(itemsCollection);
                 const itemDocs = itemsSnapshot.docs.map((doc) => ({
                     id: doc.id,
@@ -40,7 +40,7 @@ const Card = () => {
     const addExpenseHandler = (expense: IExpense) =>
         setExpenses((prevExpenses) => [...prevExpenses, expense]);
 
-    const togleForm = () => {
+    const toggleForm = () => {
         setIsFormVisible(!isFormVisible);
     };
 
@@ -52,12 +52,12 @@ const Card = () => {
         <div className={styles.card}>
             {!isFormVisible ? (
                 <div className={styles.button_container}>
-                    <button onClick={togleForm} className={styles.toggle_button}>
+                    <button onClick={toggleForm} className={styles.toggle_button}>
                         Add expense
                     </button>
                 </div>
             ) : (
-                <ExpenseForm onAddExpense={addExpenseHandler} onCancel={togleForm} setIsLoading={setIsLoading}/>
+                <ExpenseForm onAddExpense={addExpenseHandler} onCancel={toggleForm} setIsLoading={setIsLoading}/>
             )}
             <Filter onYearChange={setSelectedYear} selectedYear={selectedYear}/>
             <Hystogram expenses={filteredExpenses}/>

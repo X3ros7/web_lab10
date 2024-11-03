@@ -17,6 +17,11 @@ body {
     background-color: #ffffff;
 }
 
+h2 {
+    font-size: 1.5rem /* 24px */;
+    line-height: 2rem /* 32px */;
+}
+
 .expense-date {
     display: flex;
     flex-direction: column;
@@ -61,11 +66,9 @@ body {
 }
 
 .expense-item h2 {
-    color: #3a3a3a;
     font-size: 1rem;
     flex: 1 1;
     margin: 0 1rem;
-    color: white;
 }
 
 .expense-item__price {

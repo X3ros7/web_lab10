@@ -3,8 +3,8 @@ import {IExpense} from "@/components/Expenses";
 import {FC, SetStateAction, useState} from "react";
 import {useForm} from "react-hook-form";
 import {doc, updateDoc} from "firebase/firestore";
-import {db} from "@/firebase";
-import {Loader2, Pencil, Save, X} from "lucide-react";
+import {firestore_db} from "@/firebase";
+import {Loader2, Pencil, Save} from "lucide-react";
 
 interface UpdateDialogProps {
     setExpenses: (value: SetStateAction<IExpense[]>) => void;
@@ -18,7 +18,7 @@ const UpdateDialog: FC<UpdateDialogProps> = ({setExpenses, expense}) => {
     const onSubmit = async (data: { title: string, amount: number }) => {
         try {
             setIsLoading(true);
-            const expenseRef = doc(db, "expenses", expense.id);
+            const expenseRef = doc(firestore_db, "expenses", expense.id);
             await updateDoc(expenseRef, {...data});
             setExpenses((prevExpenses) => prevExpenses.map(prevExpense =>
                 prevExpense.id === expense.id ? {
@@ -37,7 +37,7 @@ const UpdateDialog: FC<UpdateDialogProps> = ({setExpenses, expense}) => {
     return (
         <Dialog>
             <DialogTrigger
-                className="inline-flex items-center gap-1 px-3 py-1.5 text-purple-600 hover:text-purple-700 hover:bg-purple-50 rounded-md transition-colors duration-200">
+                className="inline-flex ml-2.5 items-center gap-1 px-3 py-1.5 text-white font-bold bg-purple-950 hover:text-purple-700 hover:bg-purple-50 rounded-md transition-colors duration-200">
                 <Pencil className="w-4 h-4"/>
                 <span>Edit</span>
             </DialogTrigger>
@@ -49,10 +49,6 @@ const UpdateDialog: FC<UpdateDialogProps> = ({setExpenses, expense}) => {
                         <DialogTitle className="text-xl font-semibold text-gray-800">
                             Update expense
                         </DialogTitle>
-                        <DialogClose
-                            className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors duration-200">
-                            <X className="w-5 h-5 text-gray-500"/>
-                        </DialogClose>
                     </div>
                 </DialogHeader>
 

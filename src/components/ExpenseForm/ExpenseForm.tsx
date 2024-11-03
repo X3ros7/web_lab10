@@ -1,11 +1,11 @@
-import {SetStateAction, useState} from "react";
+import {FC, SetStateAction, useState} from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {useForm} from "react-hook-form";
 import styles from "./ExpenseForm.module.css";
 import {IExpense} from "../Expenses";
 import {addDoc, collection} from "firebase/firestore";
-import {db} from "../../firebase";
+import {firestore_db} from "@/firebase";
 
 interface ExpenseFormProps {
     onAddExpense: (expense: IExpense) => void;
@@ -13,7 +13,7 @@ interface ExpenseFormProps {
     setIsLoading?: (value: SetStateAction<boolean>) => void
 }
 
-const ExpenseForm = ({onAddExpense, onCancel, setIsLoading}: ExpenseFormProps) => {
+const ExpenseForm: FC<ExpenseFormProps> = ({onAddExpense, onCancel, setIsLoading}) => {
     const {register, handleSubmit} = useForm<Omit<IExpense, "id">>();
     const [startDate, setDate] = useState(new Date());
 
@@ -22,7 +22,7 @@ const ExpenseForm = ({onAddExpense, onCancel, setIsLoading}: ExpenseFormProps) =
             if (setIsLoading) {
                 setIsLoading(true);
             }
-            const docRef = await addDoc(collection(db, "expenses"), {
+            const docRef = await addDoc(collection(firestore_db, "expenses"), {
                 title: data.title,
                 amount: data.amount,
                 date: startDate,
