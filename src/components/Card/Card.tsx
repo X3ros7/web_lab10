@@ -2,7 +2,7 @@ import {FC, useEffect, useState} from "react";
 import Expenses, {IExpense} from "../Expenses";
 import styles from "./Card.module.css";
 import ExpenseForm from "../ExpenseForm";
-import Hystogram from "../Histogram";
+import Histogram from "../Histogram";
 import Filter from "../Filter";
 import {collection, getDocs} from "firebase/firestore";
 import {firestore_db} from "@/firebase";
@@ -60,7 +60,7 @@ const Card: FC = () => {
                 <ExpenseForm onAddExpense={addExpenseHandler} onCancel={toggleForm} setIsLoading={setIsLoading}/>
             )}
             <Filter onYearChange={setSelectedYear} selectedYear={selectedYear}/>
-            <Hystogram expenses={filteredExpenses}/>
+            <Histogram expenses={filteredExpenses}/>
             {isLoading ? (
                 <Loader/>
             ) : ''}
