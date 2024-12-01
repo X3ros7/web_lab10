@@ -1,0 +1,13 @@
+services:
+  react_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "npm run build"
+    env_file:
+      - .env
+      # OR
+      # environment:
+      # your firebase values like api key and domain
+    volumes:
+      - ./dist:/app/dist
